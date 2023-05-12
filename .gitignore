@@ -1,0 +1,8 @@
+# Folders
+.gradle/
+.vscode/
+bin/
+build/
+
+# Mac files
+**/.DS_Store

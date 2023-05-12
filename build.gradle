@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.testng', name: 'testng', version: '6.9.10'
+}
+
+application {
+    mainClass = 'com.testapp.App'
+}
+
+test {
+    useTestNG()
+}
+
+task fastTest(type: Test) {
+    testClassesDirs = testing.suites.test.sources.output.classesDirs
+    classpath = testing.suites.test.sources.runtimeClasspath
+
+    useTestNG() {
+        includeGroups 'fast'
+    }
+}
+
+task fastTestXml(type: Test) {
+    testClassesDirs = testing.suites.test.sources.output.classesDirs
+    classpath = testing.suites.test.sources.runtimeClasspath
+
+    useTestNG() {
+        suites "testng.xml"
+    }
+}
